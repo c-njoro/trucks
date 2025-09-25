@@ -1,98 +1,118 @@
 import React, { useState } from 'react';
-
-
 import { FaTruck, FaMapMarkerAlt, FaClock, FaDollarSign, FaShieldAlt, FaUserTie, FaPhone, FaEnvelope, FaMapMarkedAlt, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 import { FaBars, FaCross, FaFacebook } from 'react-icons/fa6';
+import NavigationBar from './Navigation';
+
+interface Link {
+  name: string;
+  direction: string;
+}
 
 const TruckingHomepage = () => {
   const [activeServiceTab, setActiveServiceTab] = useState('local');
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const homeLinks: Link[] = [
+   
+    {
+        name: "Top",
+        direction: "#home"
+    },
+    {
+        name: "Fleet",
+        direction: "#fleet"
+    },
+    {
+        name: "Services",
+        direction: "#services"
+    },
+    {
+        name: "Team",
+        direction: "#staff"
+    },
+    {
+        name: "Contact",
+        direction: "#contact"
+    },
+    {
+        name: "About Us",
+        direction: "/about"
+    },
+]
+
 
   // Mock data for services
   const services = [
-    { id: 'local', title: 'Local Delivery', icon: <FaMapMarkerAlt />, description: 'Efficient local delivery services for businesses and individuals.' },
-    { id: 'long-haul', title: 'Long-Haul Freight', icon: <FaTruck />, description: 'Cross-country transportation with reliable scheduling.' },
-    { id: 'construction', title: 'Construction Materials', icon: <FaShieldAlt />, description: 'Specialized handling of construction supplies and materials.' },
-    { id: 'specialized', title: 'Specialized Cargo', icon: <FaUserTie />, description: 'Transportation for oversized, fragile, or high-value items.' },
-    { id: 'same-day', title: 'Same-Day Delivery', icon: <FaClock />, description: 'Urgent delivery solutions when time is critical.' },
+    { id: 'local', title: 'Local Delivery', icon: <FaMapMarkerAlt />, description: 'Efficient local delivery services across Nairobi and surrounding counties.' },
+    { id: 'long-haul', title: 'Long-Haul Freight', icon: <FaTruck />, description: 'Cross-country transportation throughout East Africa with reliable scheduling.' },
+    { id: 'construction', title: 'Construction Materials', icon: <FaShieldAlt />, description: 'Specialized handling of construction supplies for major Kenyan projects.' },
+    { id: 'specialized', title: 'Specialized Cargo', icon: <FaUserTie />, description: 'Transportation for oversized, fragile, or high-value items across the region.' },
+    { id: 'same-day', title: 'Same-Day Delivery', icon: <FaClock />, description: 'Urgent delivery solutions within Nairobi and major towns.' },
     { id: 'tracking', title: 'Real-Time Tracking', icon: <FaMapMarkedAlt />, description: 'Monitor your shipments with our advanced tracking system.' },
   ];
 
-  // Mock data for testimonials
-  const testimonials = [
-    { name: 'John Smith', company: 'BuildRight Construction', text: 'Their reliable delivery of materials has kept our projects on schedule for years.', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' },
-    { name: 'Sarah Johnson', company: 'Fresh Foods Market', text: 'The refrigerated transport services are exceptional. Our goods always arrive in perfect condition.', image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' },
-    { name: 'Michael Torres', company: 'Premium Goods Inc.', text: 'Their specialized handling of our high-value products gives us complete peace of mind.', image: 'https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80' },
+  // Staff members data
+  const staffMembers = [
+    { 
+      name: 'James Mwangi', 
+      position: 'Operations Director', 
+      experience: '15+ years in logistics',
+      description: 'Expert in East African supply chain management with extensive regional knowledge.',
+      image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
+      alt: 'James Mwangi, Operations Director at Kenyan logistics company'
+    },
+    { 
+      name: 'Sarah Akinyi', 
+      position: 'Fleet Manager', 
+      experience: '12+ years in transportation',
+      description: 'Specialized in vehicle maintenance and route optimization across Kenya.',
+      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
+      alt: 'Sarah Akinyi, Fleet Manager overseeing truck maintenance and operations'
+    },
+    { 
+      name: 'David Ochieng', 
+      position: 'Head of Safety', 
+      experience: '10+ years in compliance',
+      description: 'Ensures all operations meet Kenyan safety standards and regulations.',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
+      alt: 'David Ochieng, Head of Safety ensuring compliance with Kenyan regulations'
+    },
+    { 
+      name: 'Grace Wambui', 
+      position: 'Customer Relations', 
+      experience: '8+ years in client service',
+      description: 'Dedicated to providing exceptional service to our Kenyan clients.',
+      image: 'https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
+      alt: 'Grace Wambui, Customer Relations manager assisting Kenyan clients'
+    },
   ];
 
   return (
-    <div className="font-sans text-gray-800 bg-gray-50">
-              {/* Navigation */}
-      <nav className="bg-white shadow-lg fixed w-full top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <FaTruck className="h-8 w-8 text-blue-600" />
-              <span className="ml-2 text-xl font-bold text-gray-900">ProHaul Logistics</span>
-            </div>
-            
-            {/* Desktop Navigation */}
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
-                <a href="#home" className="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>Home</a>
-                <a href="#services" className="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>Services</a>
-                <a href="#fleet" className="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>Fleet</a>
-                <a href="#about" className="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>About</a>
-                <a href="#contact" className="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>Contact</a>
-              </div>
-            </div>
+    <div className="font-poppins text-gray-800 bg-gray-50">
+      {/* Navigation */}
+      <NavigationBar links={homeLinks}/>
 
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="text-gray-700 hover:text-blue-600"
-              >
-                {mobileMenuOpen ? <FaCross className="h-6 w-6" /> : <FaBars className="h-6 w-6" />}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-t">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              <a href="#home" className="block text-gray-700 hover:text-blue-600 px-3 py-2 font-medium" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>Home</a>
-              <a href="#services" className="block text-gray-700 hover:text-blue-600 px-3 py-2 font-medium" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>Services</a>
-              <a href="#fleet" className="block text-gray-700 hover:text-blue-600 px-3 py-2 font-medium" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>Fleet</a>
-              <a href="#about" className="block text-gray-700 hover:text-blue-600 px-3 py-2 font-medium" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>About</a>
-              <a href="#contact" className="block text-gray-700 hover:text-blue-600 px-3 py-2 font-medium" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>Contact</a>
-            </div>
-          </div>
-        )}
-      </nav>
       {/* Hero Section */}
-      <section id='home' className="relative h-screen flex items-center justify-center bg-gray-900 mt-16  ">
+      <section id='home' className="relative h-screen flex items-center justify-center bg-gray-900 mt-16">
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-70"
-          style={{ backgroundImage: 'url(https://images.pexels.com/photos/33893512/pexels-photo-33893512.jpeg)' }}
-          aria-label="Modern fleet of trucks transporting goods on a scenic highway at golden hour"
+          className="absolute inset-0 bg-cover bg-center opacity-80"
+          style={{ backgroundImage: 'url(https://images.pexels.com/photos/2800121/pexels-photo-2800121.jpeg)' }}
+          aria-label="Truck traveling on a scenic Kenyan road with beautiful landscape"
         ></div>
+
+        <div className='absolute inset-0 bg-black opacity-60'></div>
         
         <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Reliable Transport Solutions for Every Need</h1>
-          <p className="text-xl mb-10">Local delivery, specialized goods, and construction materials transportation with precision and care</p>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Reliable Transport Solutions Across Kenya</h1>
+          <p className="text-xl mb-10">Serving Nairobi, Mombasa, Kisumu and beyond with precision and care</p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300">
+            <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300">
               Get Quote
             </button>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300">
+            <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300">
               Track Shipment
             </button>
           </div>
@@ -100,88 +120,63 @@ const TruckingHomepage = () => {
         
         {/* Tracking Widget */}
         <div className="absolute top-4 right-4 bg-white p-4 rounded-lg shadow-lg z-10 max-w-xs">
-          <h3 className="font-bold text-blue-800 mb-2">Track Your Shipment</h3>
+          <h3 className="font-bold text-green-800 mb-2">Track Your Shipment</h3>
           <div className="flex">
             <input 
               type="text" 
               placeholder="Enter tracking number" 
-              className="flex-grow p-2 border border-gray-300 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-grow p-2 border border-gray-300 rounded-l focus:outline-none focus:ring-2 focus:ring-green-500"
             />
-            <button className="bg-blue-600 text-white p-2 rounded-r hover:bg-blue-700 transition duration-300">
+            <button className="bg-green-600 text-white p-2 rounded-r hover:bg-green-700 transition duration-300">
               Track
             </button>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id='services' className="py-20 relative">
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-10"
-          style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1600954700722-c6b7be8a0799?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80)' }}
-          aria-label="Professional logistics facility with organized loading bays and modern trucks"
-        ></div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-blue-900">Our Services</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map(service => (
-              <div 
-                key={service.id}
-                className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 border-t-4 border-orange-500"
-              >
-                <div className="text-blue-900 text-3xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-bold mb-2 text-blue-900">{service.title}</h3>
-                <p className="text-gray-600">{service.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* About Us Section */}
-      <section id='about' className="py-20 bg-gray-100">
+      {/* Fleet Showcase - Now Second Section */}
+      <section id='fleet' className="py-20 bg-gray-100">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-blue-900">About Our Company</h2>
-              <p className="text-lg mb-6">
-                With over 15 years of experience, we've built a reputation for reliability and excellence in the transportation industry. 
-                Our team of professional drivers and logistics experts work tirelessly to ensure your goods arrive safely and on time.
-              </p>
-              <p className="text-lg">
-                We pride ourselves on our commitment to safety, customer service, and innovative logistics solutions that meet the unique needs of each client.
-              </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-green-900">Our Modern Fleet</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <div className="bg-white rounded-lg overflow-hidden shadow-md">
+              <img 
+                src="https://images.pexels.com/photos/2676842/pexels-photo-2676842.jpeg" 
+                alt="Modern delivery truck with Kenyan registration plates on a Nairobi road" 
+                className="w-full h-56 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2 text-green-900">Standard Delivery Trucks</h3>
+                <p className="text-gray-600">Versatile trucks for general freight and local deliveries across urban centers.</p>
+              </div>
             </div>
             
-            <div className="lg:w-1/2 grid grid-cols-2 gap-6">
-              <div className="bg-white p-6 rounded-lg shadow text-center">
-                <div className="text-4xl font-bold text-blue-900 mb-2">15+</div>
-                <div className="text-gray-600">Years in Business</div>
+            <div className="bg-white rounded-lg overflow-hidden shadow-md">
+              <img 
+                src="https://images.pexels.com/photos/29480559/pexels-photo-29480559.jpeg" 
+                alt="Heavy-duty flatbed truck loading construction materials at a Kenyan site" 
+                className="w-full h-56 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2 text-green-900">Flatbed Trucks</h3>
+                <p className="text-gray-600">Ideal for construction materials and oversized loads for Kenyan infrastructure projects.</p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow text-center">
-                <div className="text-4xl font-bold text-blue-900 mb-2">500+</div>
-                <div className="text-gray-600">Satisfied Customers</div>
-              </div>
-              <div className="bg-white p-6 rounded-lg shadow text-center">
-                <div className="text-4xl font-bold text-blue-900 mb-2">2M+</div>
-                <div className="text-gray-600">Miles Covered</div>
-              </div>
-              <div className="bg-white p-6 rounded-lg shadow text-center">
-                <div className="text-4xl font-bold text-blue-900 mb-2">50+</div>
-                <div className="text-gray-600">Fleet Size</div>
+            </div>
+            
+            <div className="bg-white rounded-lg overflow-hidden shadow-md">
+              <img 
+                src="https://images.pexels.com/photos/28767375/pexels-photo-28767375.jpeg" 
+                alt="Temperature-controlled refrigerated transport vehicle for perishable goods" 
+                className="w-full h-56 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2 text-green-900">Refrigerated Trucks</h3>
+                <p className="text-gray-600">Temperature-controlled transport for fresh produce and perishable goods.</p>
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Fleet Showcase */}
-      <section id='fleet' className="py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-blue-900">Our Modern Fleet</h2>
-          
           <Swiper
             modules={[Navigation]}
             spaceBetween={30}
@@ -197,13 +192,13 @@ const TruckingHomepage = () => {
             <SwiperSlide>
               <div className="bg-white rounded-lg overflow-hidden shadow-md">
                 <img 
-                  src="https://images.pexels.com/photos/29571418/pexels-photo-29571418.jpeg" 
-                  alt="Modern delivery truck with company branding" 
+                  src="https://images.pexels.com/photos/28984263/pexels-photo-28984263.jpeg" 
+                  alt="Modern delivery truck with company branding on a Kenyan highway" 
                   className="w-full h-56 object-cover"
                 />
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 text-blue-900">Standard Delivery Trucks</h3>
-                  <p className="text-gray-600">Versatile trucks for general freight and local deliveries.</p>
+                  <h3 className="text-xl font-bold mb-2 text-green-900">Urban Delivery Trucks</h3>
+                  <p className="text-gray-600">Maneuverable trucks designed for Nairobi's busy streets.</p>
                 </div>
               </div>
             </SwiperSlide>
@@ -211,27 +206,13 @@ const TruckingHomepage = () => {
             <SwiperSlide>
               <div className="bg-white rounded-lg overflow-hidden shadow-md">
                 <img 
-                  src="https://images.pexels.com/photos/188679/pexels-photo-188679.jpeg" 
-                  alt="Heavy-duty flatbed truck loading construction materials" 
+                  src="https://images.pexels.com/photos/9895973/pexels-photo-9895973.jpeg" 
+                  alt="Heavy-duty truck transporting goods on Mombasa Road" 
                   className="w-full h-56 object-cover"
                 />
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 text-blue-900">Flatbed Trucks</h3>
-                  <p className="text-gray-600">Ideal for construction materials and oversized loads.</p>
-                </div>
-              </div>
-            </SwiperSlide>
-            
-            <SwiperSlide>
-              <div className="bg-white rounded-lg overflow-hidden shadow-md">
-                <img 
-                  src="https://images.pexels.com/photos/33897865/pexels-photo-33897865.jpeg" 
-                  alt="Temperature-controlled refrigerated transport vehicle" 
-                  className="w-full h-56 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 text-blue-900">Refrigerated Trucks</h3>
-                  <p className="text-gray-600">Temperature-controlled transport for perishable goods.</p>
+                  <h3 className="text-xl font-bold mb-2 text-green-900">Heavy-Duty Trucks</h3>
+                  <p className="text-gray-600">Powerful vehicles for long-haul routes across East Africa.</p>
                 </div>
               </div>
             </SwiperSlide>
@@ -240,12 +221,12 @@ const TruckingHomepage = () => {
               <div className="bg-white rounded-lg overflow-hidden shadow-md">
                 <img 
                   src="https://images.pexels.com/photos/32252461/pexels-photo-32252461.jpeg" 
-                  alt="Specialized cargo truck with hydraulic lift system" 
+                  alt="Specialized cargo truck with hydraulic lift system in industrial area" 
                   className="w-full h-56 object-cover"
                 />
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 text-blue-900">Specialized Vehicles</h3>
-                  <p className="text-gray-600">Equipped with advanced features for unique cargo requirements.</p>
+                  <h3 className="text-xl font-bold mb-2 text-green-900">Specialized Vehicles</h3>
+                  <p className="text-gray-600">Equipped with advanced features for unique cargo requirements in Kenya.</p>
                 </div>
               </div>
             </SwiperSlide>
@@ -253,61 +234,112 @@ const TruckingHomepage = () => {
         </div>
       </section>
 
+      {/* Services Section */}
+      <section id='services' className="py-20 relative">
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-10"
+          style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1591719373530-7d56dedfe2d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80)' }}
+          aria-label="Professional logistics facility in Kenya with organized loading bays"
+        ></div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-green-900">Our Services </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map(service => (
+              <div 
+                key={service.id}
+                className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 border-t-4 border-green-500"
+              >
+                <div className="text-green-900 text-3xl mb-4">{service.icon}</div>
+                <h3 className="text-xl font-bold mb-2 text-green-900">{service.title}</h3>
+                <p className="text-gray-600">{service.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Why Choose Us Section */}
-      <section id='why' className="py-20 bg-blue-900 text-white">
+      <section id='why' className="py-20 bg-green-900 text-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Why Choose Us</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Why Choose Our Logistics</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="text-4xl mb-4 text-orange-500 flex justify-center"><FaMapMarkedAlt /></div>
               <h3 className="text-xl font-bold mb-2">24/7 Tracking</h3>
-              <p className="text-blue-100">Real-time updates on your shipments anytime, anywhere.</p>
+              <p className="text-green-100">Real-time updates on your shipments across Kenya and East Africa.</p>
             </div>
             
             <div className="text-center">
               <div className="text-4xl mb-4 text-orange-500 flex justify-center"><FaShieldAlt /></div>
               <h3 className="text-xl font-bold mb-2">Licensed & Insured</h3>
-              <p className="text-blue-100">Full compliance with all regulations and comprehensive coverage.</p>
+              <p className="text-green-100">Fully compliant with Kenyan transportation regulations.</p>
             </div>
             
             <div className="text-center">
               <div className="text-4xl mb-4 text-orange-500 flex justify-center"><FaUserTie /></div>
               <h3 className="text-xl font-bold mb-2">Experienced Drivers</h3>
-              <p className="text-blue-100">Professional drivers with extensive training and safety records.</p>
+              <p className="text-green-100">Kenyan drivers with extensive knowledge of local routes.</p>
             </div>
             
             <div className="text-center">
               <div className="text-4xl mb-4 text-orange-500 flex justify-center"><FaDollarSign /></div>
               <h3 className="text-xl font-bold mb-2">Competitive Pricing</h3>
-              <p className="text-blue-100">Fair, transparent pricing without hidden fees.</p>
+              <p className="text-green-100">Fair, transparent pricing in Kenyan Shillings.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Interactive Quote Calculator */}
-      <section id='quote' className="py-20 bg-gray-100">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-blue-900">Get a Quick Quote</h2>
-          <p className="text-center text-lg mb-12 text-gray-600">Fill out the form below to receive an estimated quote for your shipment</p>
+      {/* Staff Section - Replaced Testimonials */}
+      <section id='staff' className="py-20 bg-gray-100">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-green-900">Our Competent Team</h2>
           
-          <div className="bg-white rounded-lg shadow-lg p-6 md:p-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {staffMembers.map((member, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
+                <img 
+                  src={member.image} 
+                  alt={member.alt}
+                  className="w-full h-64 object-cover"
+                />
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-green-900">{member.name}</h3>
+                  <p className="text-orange-500 font-medium mb-1">{member.position}</p>
+                  <p className="text-green-700 text-sm mb-3">{member.experience}</p>
+                  <p className="text-gray-600">{member.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive Quote Calculator */}
+      <section id='quote' className="py-20 bg-white">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-green-900">Get a Quick Quote</h2>
+          <p className="text-center text-lg mb-12 text-gray-600">Fill out the form below to receive an estimated quote for your shipment in Kenya</p>
+          
+          <div className="bg-gray-50 rounded-lg shadow-lg p-6 md:p-8 border border-green-200">
             <div className="flex border-b mb-6">
               <button 
-                className={`py-2 px-4 font-medium ${activeServiceTab === 'local' ? 'border-b-2 border-orange-500 text-blue-900' : 'text-gray-500'}`}
+                className={`py-2 px-4 font-medium ${activeServiceTab === 'local' ? 'border-b-2 border-green-500 text-green-900' : 'text-gray-500'}`}
                 onClick={() => setActiveServiceTab('local')}
               >
                 Local Delivery
               </button>
               <button 
-                className={`py-2 px-4 font-medium ${activeServiceTab === 'long-haul' ? 'border-b-2 border-orange-500 text-blue-900' : 'text-gray-500'}`}
+                className={`py-2 px-4 font-medium ${activeServiceTab === 'long-haul' ? 'border-b-2 border-green-500 text-green-900' : 'text-gray-500'}`}
                 onClick={() => setActiveServiceTab('long-haul')}
               >
                 Long-Haul
               </button>
               <button 
-                className={`py-2 px-4 font-medium ${activeServiceTab === 'specialized' ? 'border-b-2 border-orange-500 text-blue-900' : 'text-gray-500'}`}
+                className={`py-2 px-4 font-medium ${activeServiceTab === 'specialized' ? 'border-b-2 border-green-500 text-green-900' : 'text-gray-500'}`}
                 onClick={() => setActiveServiceTab('specialized')}
               >
                 Specialized
@@ -317,19 +349,20 @@ const TruckingHomepage = () => {
             <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-gray-700 mb-2">Pickup Location</label>
-                <input type="text" className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <input type="text" className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="e.g. Nairobi" />
               </div>
               
               <div>
                 <label className="block text-gray-700 mb-2">Delivery Location</label>
-                <input type="text" className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <input type="text" className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="e.g. Mombasa" />
               </div>
               
               <div>
                 <label className="block text-gray-700 mb-2">Cargo Type</label>
-                <select className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <select className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500">
                   <option>General Freight</option>
                   <option>Construction Materials</option>
+                  <option>Agricultural Produce</option>
                   <option>Refrigerated Goods</option>
                   <option>Specialized Equipment</option>
                 </select>
@@ -337,21 +370,21 @@ const TruckingHomepage = () => {
               
               <div>
                 <label className="block text-gray-700 mb-2">Weight (approx.)</label>
-                <input type="text" className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <input type="text" className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="e.g. 5 tons" />
               </div>
               
               <div className="md:col-span-2">
                 <label className="block text-gray-700 mb-2">Delivery Date</label>
-                <input type="date" className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <input type="date" className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" />
               </div>
               
-              <div className="md:col-span-2 bg-blue-50 p-4 rounded mt-4">
+              <div className="md:col-span-2 bg-green-50 p-4 rounded mt-4 border border-green-200">
                 <div className="flex justify-between items-center">
                   <div>
                     <div className="text-sm text-gray-600">Estimated Cost</div>
-                    <div className="text-2xl font-bold text-blue-900">$475 - $525</div>
+                    <div className="text-2xl font-bold text-green-900">KES 45,000 - 55,000</div>
                   </div>
-                  <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+                  <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
                     Get Detailed Quote
                   </button>
                 </div>
@@ -361,64 +394,30 @@ const TruckingHomepage = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section id='testimonials' className="py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-blue-900">What Our Customers Say</h2>
-          
-          <Swiper
-            modules={[Navigation]}
-            spaceBetween={30}
-            slidesPerView={1}
-            navigation
-            breakpoints={{
-              768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
-            }}
-            className="pb-12"
-          >
-            {testimonials.map((testimonial, index) => (
-              <SwiperSlide key={index}>
-                <div className="bg-white p-6 rounded-lg shadow-md">
-                  <div className="flex items-center mb-4">
-                    <img src={testimonial.image} alt={testimonial.name} className="w-12 h-12 rounded-full object-cover mr-4" />
-                    <div>
-                      <div className="font-bold text-blue-900">{testimonial.name}</div>
-                      <div className="text-sm text-gray-600">{testimonial.company}</div>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 italic">"{testimonial.text}"</p>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </section>
-
       {/* Contact Section */}
       <section id='contact' className="py-20 bg-gray-100">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-12">
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-blue-900">Contact Us</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-green-900">Contact Our Offices</h2>
               
               <form className="space-y-6">
                 <div>
                   <label className="block text-gray-700 mb-2">Your Name</label>
-                  <input type="text" className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                  <input type="text" className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" />
                 </div>
                 
                 <div>
                   <label className="block text-gray-700 mb-2">Email Address</label>
-                  <input type="email" className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                  <input type="email" className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" />
                 </div>
                 
                 <div>
                   <label className="block text-gray-700 mb-2">Message</label>
-                  <textarea rows="5" className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                  <textarea rows="5" className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
                 </div>
                 
-                <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg transition duration-300">
+                <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300">
                   Send Message
                 </button>
               </form>
@@ -426,43 +425,51 @@ const TruckingHomepage = () => {
             
             <div className="lg:w-1/2">
               <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-bold mb-6 text-blue-900">Company Information</h3>
+                <h3 className="text-xl font-bold mb-6 text-green-900">Our Kenyan Offices</h3>
                 
                 <div className="space-y-4">
                   <div className="flex items-start">
-                    <div className="text-orange-500 text-xl mr-4"><FaMapMarkerAlt /></div>
+                    <div className="text-green-600 text-xl mr-4"><FaMapMarkerAlt /></div>
                     <div>
-                      <div className="font-bold">Address</div>
-                      <div className="text-gray-600">1234 Transportation Ave, Logistics City, LC 56789</div>
+                      <div className="font-bold">Nairobi Headquarters</div>
+                      <div className="text-gray-600">Mombasa Road, Nairobi, Kenya</div>
                     </div>
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="text-orange-500 text-xl mr-4"><FaPhone /></div>
+                    <div className="text-green-600 text-xl mr-4"><FaMapMarkerAlt /></div>
+                    <div>
+                      <div className="font-bold">Mombasa Branch</div>
+                      <div className="text-gray-600">Port Reitz Road, Mombasa, Kenya</div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start">
+                    <div className="text-green-600 text-xl mr-4"><FaPhone /></div>
                     <div>
                       <div className="font-bold">Phone</div>
-                      <div className="text-gray-600">(555) 123-4567</div>
+                      <div className="text-gray-600">+254 700 123 456</div>
                     </div>
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="text-orange-500 text-xl mr-4"><FaEnvelope /></div>
+                    <div className="text-green-600 text-xl mr-4"><FaEnvelope /></div>
                     <div>
                       <div className="font-bold">Email</div>
-                      <div className="text-gray-600">info@truckingcompany.com</div>
+                      <div className="text-gray-600">info@kenyaprohaul.co.ke</div>
                     </div>
                   </div>
                   
                   <div className="pt-4">
                     <div className="font-bold mb-2">Hours of Operation</div>
-                    <div className="text-gray-600">Monday - Friday: 8:00 AM - 6:00 PM</div>
-                    <div className="text-gray-600">Saturday: 9:00 AM - 2:00 PM</div>
+                    <div className="text-gray-600">Monday - Friday: 7:00 AM - 7:00 PM</div>
+                    <div className="text-gray-600">Saturday: 8:00 AM - 4:00 PM</div>
                     <div className="text-gray-600">Sunday: Emergency services only</div>
                   </div>
                   
                   <div className="pt-4">
                     <div className="font-bold mb-2">Emergency Contact</div>
-                    <div className="text-gray-600">After hours: (555) 789-0123</div>
+                    <div className="text-gray-600">After hours: +254 711 123 456</div>
                   </div>
                 </div>
               </div>
@@ -472,41 +479,41 @@ const TruckingHomepage = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-blue-900 text-white py-12">
+      <footer className="bg-green-900 text-white py-12">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">Transport Solutions</h3>
-              <p className="text-blue-100">Providing reliable transportation services for over 15 years.</p>
+              <h3 className="text-xl font-bold mb-4">Kenya ProHaul Logistics</h3>
+              <p className="text-green-100">Providing reliable transportation services across Kenya for over 15 years.</p>
             </div>
             
             <div>
               <h3 className="text-xl font-bold mb-4">Quick Links</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="text-blue-100 hover:text-orange-400 transition duration-300">Services</a></li>
-                <li><a href="#" className="text-blue-100 hover:text-orange-400 transition duration-300">Fleet</a></li>
-                <li><a href="#" className="text-blue-100 hover:text-orange-400 transition duration-300">About Us</a></li>
-                <li><a href="#" className="text-blue-100 hover:text-orange-400 transition duration-300">Contact</a></li>
+                <li><a href="#fleet" className="text-green-100 hover:text-orange-400 transition duration-300">Fleet</a></li>
+                <li><a href="#services" className="text-green-100 hover:text-orange-400 transition duration-300">Services</a></li>
+                <li><a href="#staff" className="text-green-100 hover:text-orange-400 transition duration-300">Our Team</a></li>
+                <li><a href="#contact" className="text-green-100 hover:text-orange-400 transition duration-300">Contact</a></li>
               </ul>
             </div>
             
             <div>
               <h3 className="text-xl font-bold mb-4">Services</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="text-blue-100 hover:text-orange-400 transition duration-300">Local Delivery</a></li>
-                <li><a href="#" className="text-blue-100 hover:text-orange-400 transition duration-300">Long-Haul Freight</a></li>
-                <li><a href="#" className="text-blue-100 hover:text-orange-400 transition duration-300">Construction Materials</a></li>
-                <li><a href="#" className="text-blue-100 hover:text-orange-400 transition duration-300">Specialized Cargo</a></li>
+                <li><a href="#" className="text-green-100 hover:text-orange-400 transition duration-300">Local Delivery</a></li>
+                <li><a href="#" className="text-green-100 hover:text-orange-400 transition duration-300">Long-Haul Freight</a></li>
+                <li><a href="#" className="text-green-100 hover:text-orange-400 transition duration-300">Construction Materials</a></li>
+                <li><a href="#" className="text-green-100 hover:text-orange-400 transition duration-300">Specialized Cargo</a></li>
               </ul>
             </div>
             
             <div>
               <h3 className="text-xl font-bold mb-4">Connect With Us</h3>
               <div className="flex space-x-4 mb-4">
-                <a href="#" className="text-blue-100 hover:text-orange-400 transition duration-300 text-xl"><FaFacebook /></a>
-                <a href="#" className="text-blue-100 hover:text-orange-400 transition duration-300 text-xl"><FaTwitter /></a>
-                <a href="#" className="text-blue-100 hover:text-orange-400 transition duration-300 text-xl"><FaInstagram /></a>
-                <a href="#" className="text-blue-100 hover:text-orange-400 transition duration-300 text-xl"><FaLinkedin /></a>
+                <a href="#" className="text-green-100 hover:text-orange-400 transition duration-300 text-xl"><FaFacebook /></a>
+                <a href="#" className="text-green-100 hover:text-orange-400 transition duration-300 text-xl"><FaTwitter /></a>
+                <a href="#" className="text-green-100 hover:text-orange-400 transition duration-300 text-xl"><FaInstagram /></a>
+                <a href="#" className="text-green-100 hover:text-orange-400 transition duration-300 text-xl"><FaLinkedin /></a>
               </div>
               <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 rounded transition duration-300">
                 Get Quote
@@ -514,8 +521,8 @@ const TruckingHomepage = () => {
             </div>
           </div>
           
-          <div className="border-t border-blue-700 mt-8 pt-8 text-center text-blue-200">
-            <p>© {new Date().getFullYear()} Transport Solutions. All rights reserved.</p>
+          <div className="border-t border-green-700 mt-8 pt-8 text-center text-green-200">
+            <p>© {new Date().getFullYear()} Kenya ProHaul Logistics. All rights reserved.</p>
           </div>
         </div>
       </footer>
