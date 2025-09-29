@@ -4,8 +4,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
-import { FaBars, FaCross, FaFacebook } from 'react-icons/fa6';
+import { FaFacebook } from 'react-icons/fa6';
 import NavigationBar from './Navigation';
+import Image from 'next/image';
 
 interface Link {
   name: string;
@@ -60,7 +61,7 @@ const TruckingHomepage = () => {
       position: 'Operations Director', 
       experience: '15+ years in logistics',
       description: 'Expert in East African supply chain management with extensive regional knowledge.',
-      image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
+      image: 'https://images.pexels.com/photos/20335884/pexels-photo-20335884.jpeg',
       alt: 'James Mwangi, Operations Director at Kenyan logistics company'
     },
     { 
@@ -68,7 +69,7 @@ const TruckingHomepage = () => {
       position: 'Fleet Manager', 
       experience: '12+ years in transportation',
       description: 'Specialized in vehicle maintenance and route optimization across Kenya.',
-      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
+      image: 'https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg',
       alt: 'Sarah Akinyi, Fleet Manager overseeing truck maintenance and operations'
     },
     { 
@@ -76,7 +77,7 @@ const TruckingHomepage = () => {
       position: 'Head of Safety', 
       experience: '10+ years in compliance',
       description: 'Ensures all operations meet Kenyan safety standards and regulations.',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
+      image: 'https://images.pexels.com/photos/3206114/pexels-photo-3206114.jpeg',
       alt: 'David Ochieng, Head of Safety ensuring compliance with Kenyan regulations'
     },
     { 
@@ -84,7 +85,7 @@ const TruckingHomepage = () => {
       position: 'Customer Relations', 
       experience: '8+ years in client service',
       description: 'Dedicated to providing exceptional service to our Kenyan clients.',
-      image: 'https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
+      image: 'https://images.pexels.com/photos/1181695/pexels-photo-1181695.jpeg',
       alt: 'Grace Wambui, Customer Relations manager assisting Kenyan clients'
     },
   ];
@@ -141,10 +142,12 @@ const TruckingHomepage = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             <div className="bg-white rounded-lg overflow-hidden shadow-md">
-              <img 
+              <Image 
                 src="https://images.pexels.com/photos/2676842/pexels-photo-2676842.jpeg" 
                 alt="Modern delivery truck with Kenyan registration plates on a Nairobi road" 
                 className="w-full h-56 object-cover"
+                width={600} height={224}
+                priority
               />
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-green-900">Standard Delivery Trucks</h3>
@@ -153,10 +156,12 @@ const TruckingHomepage = () => {
             </div>
             
             <div className="bg-white rounded-lg overflow-hidden shadow-md">
-              <img 
+              <Image 
                 src="https://images.pexels.com/photos/29480559/pexels-photo-29480559.jpeg" 
                 alt="Heavy-duty flatbed truck loading construction materials at a Kenyan site" 
                 className="w-full h-56 object-cover"
+                width={600} height={224}
+                priority
               />
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-green-900">Flatbed Trucks</h3>
@@ -165,10 +170,12 @@ const TruckingHomepage = () => {
             </div>
             
             <div className="bg-white rounded-lg overflow-hidden shadow-md">
-              <img 
+              <Image 
                 src="https://images.pexels.com/photos/28767375/pexels-photo-28767375.jpeg" 
                 alt="Temperature-controlled refrigerated transport vehicle for perishable goods" 
                 className="w-full h-56 object-cover"
+                width={600} height={224}
+                priority
               />
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-green-900">Refrigerated Trucks</h3>
@@ -191,24 +198,28 @@ const TruckingHomepage = () => {
           >
             <SwiperSlide>
               <div className="bg-white rounded-lg overflow-hidden shadow-md">
-                <img 
+                <Image 
                   src="https://images.pexels.com/photos/28984263/pexels-photo-28984263.jpeg" 
                   alt="Modern delivery truck with company branding on a Kenyan highway" 
                   className="w-full h-56 object-cover"
+                  width={600} height={224}
+                  priority
                 />
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2 text-green-900">Urban Delivery Trucks</h3>
-                  <p className="text-gray-600">Maneuverable trucks designed for Nairobi's busy streets.</p>
+                  <p className="text-gray-600">Maneuverable trucks designed for Nairobi&apos;s busy streets.</p>
                 </div>
               </div>
             </SwiperSlide>
             
             <SwiperSlide>
               <div className="bg-white rounded-lg overflow-hidden shadow-md">
-                <img 
+                <Image 
                   src="https://images.pexels.com/photos/9895973/pexels-photo-9895973.jpeg" 
                   alt="Heavy-duty truck transporting goods on Mombasa Road" 
                   className="w-full h-56 object-cover"
+                  width={600} height={224}
+                  priority
                 />
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2 text-green-900">Heavy-Duty Trucks</h3>
@@ -219,10 +230,12 @@ const TruckingHomepage = () => {
             
             <SwiperSlide>
               <div className="bg-white rounded-lg overflow-hidden shadow-md">
-                <img 
+                <Image 
                   src="https://images.pexels.com/photos/32252461/pexels-photo-32252461.jpeg" 
                   alt="Specialized cargo truck with hydraulic lift system in industrial area" 
                   className="w-full h-56 object-cover"
+                  width={600} height={224}
+                  priority
                 />
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2 text-green-900">Specialized Vehicles</h3>
@@ -301,10 +314,12 @@ const TruckingHomepage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {staffMembers.map((member, index) => (
               <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
-                <img 
+                <Image 
                   src={member.image} 
                   alt={member.alt}
                   className="w-full h-64 object-cover"
+                  width={600} height={256}
+                  priority
                 />
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-green-900">{member.name}</h3>
@@ -414,7 +429,7 @@ const TruckingHomepage = () => {
                 
                 <div>
                   <label className="block text-gray-700 mb-2">Message</label>
-                  <textarea rows="5" className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+                  <textarea rows={5} className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
                 </div>
                 
                 <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300">
@@ -448,7 +463,7 @@ const TruckingHomepage = () => {
                     <div className="text-green-600 text-xl mr-4"><FaPhone /></div>
                     <div>
                       <div className="font-bold">Phone</div>
-                      <div className="text-gray-600">+254 700 123 456</div>
+                      <div className="text-gray-600">+254 112 820700</div>
                     </div>
                   </div>
                   
@@ -469,7 +484,7 @@ const TruckingHomepage = () => {
                   
                   <div className="pt-4">
                     <div className="font-bold mb-2">Emergency Contact</div>
-                    <div className="text-gray-600">After hours: +254 711 123 456</div>
+                    <div className="text-gray-600">After hours: +254 112 820700</div>
                   </div>
                 </div>
               </div>

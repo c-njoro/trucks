@@ -1,6 +1,8 @@
 import React from 'react';
-import { FaTruck, FaMapMarkerAlt, FaUsers, FaAward, FaShieldAlt, FaHandshake, FaLeaf, FaChartLine } from 'react-icons/fa';
+import { FaTruck, FaMapMarkerAlt, FaUsers, FaAward, FaShieldAlt, FaHandshake, FaLeaf, FaChartLine, FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import NavigationBar from './Navigation';
+import Link from 'next/link';
+import Image from 'next/image';
 
 interface Link {
   name: string;
@@ -84,41 +86,6 @@ const AboutPage = () => {
     },
   ];
 
-  // Management team
-  const managementTeam = [
-    {
-      name: 'John Kamau',
-      position: 'Founder & CEO',
-      experience: '20+ years in logistics',
-      bio: 'Former Kenya Transport Association board member with extensive experience in East African supply chain management.',
-      image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
-      alt: 'John Kamau, Founder and CEO of Kenya ProHaul Logistics'
-    },
-    {
-      name: 'Mary Wanjiku',
-      position: 'Operations Director',
-      experience: '15+ years in transportation',
-      bio: 'Specialized in route optimization and fleet management across Kenyan terrain and urban centers.',
-      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
-      alt: 'Mary Wanjiku, Operations Director at Kenya ProHaul Logistics'
-    },
-    {
-      name: 'David Omondi',
-      position: 'Finance Director',
-      experience: '12+ years in corporate finance',
-      bio: 'Expert in logistics financing and investment strategies for East African markets.',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
-      alt: 'David Omondi, Finance Director managing company finances'
-    },
-    {
-      name: 'Grace Mwende',
-      position: 'HR & Training Manager',
-      experience: '10+ years in human resources',
-      bio: 'Dedicated to developing Kenyan talent and maintaining our team of professional drivers.',
-      image: 'https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
-      alt: 'Grace Mwende, HR and Training Manager developing local talent'
-    },
-  ];
 
   return (
     <div className="font-sans text-gray-800 bg-gray-50 pt-16">
@@ -141,7 +108,7 @@ const AboutPage = () => {
         <div className="container mx-auto px-4 relative z-10 text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">About Kenya ProHaul Logistics</h1>
           <p className="text-xl max-w-3xl mx-auto">
-            For over 15 years, we've been connecting businesses across Kenya and East Africa with reliable, efficient transportation solutions.
+            For over 15 years, we&apos;ve been connecting businesses across Kenya and East Africa with reliable, efficient transportation solutions.
           </p>
         </div>
       </section>
@@ -158,7 +125,7 @@ const AboutPage = () => {
                 one of the most trusted logistics companies in East Africa.
               </p>
               <p className="text-lg mb-6">
-                We understand the unique challenges of transportation in Kenya - from navigating Nairobi's busy streets to 
+                We understand the unique challenges of transportation in Kenya - from navigating Nairobi&apos;s busy streets to 
                 traversing the long routes to Mombasa and beyond. Our deep local knowledge sets us apart and ensures your 
                 goods arrive safely and on time.
               </p>
@@ -169,10 +136,12 @@ const AboutPage = () => {
             </div>
             
             <div className="lg:w-1/2">
-              <img 
+              <Image 
                 src="https://images.pexels.com/photos/2698991/pexels-photo-2698991.jpeg" 
                 alt="Kenya ProHaul Logistics truck on a scenic Kenyan road" 
                 className="rounded-lg shadow-lg w-full h-96 object-cover"
+                width={900} height={600}
+                priority
               />
             </div>
           </div>
@@ -200,8 +169,8 @@ const AboutPage = () => {
               </div>
               <h3 className="text-2xl font-bold mb-4 text-green-900">Our Vision</h3>
               <p className="text-lg text-gray-700">
-                To be East Africa's leading logistics partner, recognized for innovation, reliability, and commitment to 
-                sustainable transportation practices that benefit Kenya's economy and environment.
+                To be East Africa&apos;s leading logistics partner, recognized for innovation, reliability, and commitment to 
+                sustainable transportation practices that benefit Kenya&lsquo;s economy and environment.
               </p>
             </div>
           </div>
@@ -295,10 +264,12 @@ const AboutPage = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-1/2">
-              <img 
+              <Image 
                 src="https://images.pexels.com/photos/33960450/pexels-photo-33960450.jpeg" 
                 alt="Kenya ProHaul Logistics team participating in community event" 
                 className="rounded-lg shadow-lg w-full h-96 object-cover"
+                width={900} height={600}
+                priority
               />
             </div>
             
@@ -309,15 +280,15 @@ const AboutPage = () => {
                 local initiatives and support various community development projects across Kenya.
               </p>
               <p className="text-lg mb-6">
-                Our commitment extends beyond transportation - we're dedicated to creating positive impact through 
+                Our commitment extends beyond transportation - we&apos;re dedicated to creating positive impact through 
                 job creation, skills development, and supporting local businesses in the communities where we operate.
               </p>
               <div className="bg-green-100 p-6 rounded-lg border-l-4 border-green-600">
                 <p className="text-green-900 font-semibold">
-                  "We're not just moving goods; we're moving Kenya forward. Our success is intertwined with the 
-                  prosperity of the communities we serve."
+                  &quot;We&apos;re not just moving goods; we&apos;re moving Kenya forward. Our success is intertwined with the 
+                  prosperity of the communities we serve.&quot;
                 </p>
-                <p className="text-green-700 mt-2">- John Kamau, Founder & CEO</p>
+                <p className="text-green-700 mt-2">- Dominic Kamau, Founder &amp; CEO</p>
               </div>
             </div>
           </div>
@@ -354,8 +325,8 @@ const AboutPage = () => {
             <div>
               <h3 className="text-xl font-bold mb-4">Quick Links</h3>
               <ul className="space-y-2">
-                <li><a href="/" className="text-green-100 hover:text-orange-400 transition duration-300">Home</a></li>
-                <li><a href="/about" className="text-green-100 hover:text-orange-400 transition duration-300">About</a></li>
+                <li><Link href="/" className="text-green-100 hover:text-orange-400 transition duration-300">Home</Link></li>
+                <li><Link href="/about" className="text-green-100 hover:text-orange-400 transition duration-300">About</Link></li>
                 <li><a href="/services" className="text-green-100 hover:text-orange-400 transition duration-300">Services</a></li>
                 <li><a href="/contact" className="text-green-100 hover:text-orange-400 transition duration-300">Contact</a></li>
               </ul>
@@ -365,7 +336,7 @@ const AboutPage = () => {
               <h3 className="text-xl font-bold mb-4">Contact Info</h3>
               <ul className="space-y-2 text-green-100">
                 <li>Nairobi Headquarters</li>
-                <li>+254 700 123 456</li>
+                <li>+254 112 820700</li>
                 <li>info@kenyaprohaul.co.ke</li>
               </ul>
             </div>
@@ -373,10 +344,10 @@ const AboutPage = () => {
             <div>
               <h3 className="text-xl font-bold mb-4">Follow Us</h3>
               <div className="flex space-x-4">
-                <a href="#" className="text-green-100 hover:text-orange-400 transition duration-300 text-xl">FB</a>
-                <a href="#" className="text-green-100 hover:text-orange-400 transition duration-300 text-xl">TW</a>
-                <a href="#" className="text-green-100 hover:text-orange-400 transition duration-300 text-xl">IG</a>
-                <a href="#" className="text-green-100 hover:text-orange-400 transition duration-300 text-xl">IN</a>
+              <a href="#" className="text-green-100 hover:text-orange-400 transition duration-300 text-xl"><FaFacebook /></a>
+                <a href="#" className="text-green-100 hover:text-orange-400 transition duration-300 text-xl"><FaTwitter /></a>
+                <a href="#" className="text-green-100 hover:text-orange-400 transition duration-300 text-xl"><FaInstagram /></a>
+                <a href="#" className="text-green-100 hover:text-orange-400 transition duration-300 text-xl"><FaLinkedin /></a>
               </div>
             </div>
           </div>
