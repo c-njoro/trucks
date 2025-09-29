@@ -7,6 +7,8 @@ import { Navigation } from 'swiper/modules';
 import { FaFacebook } from 'react-icons/fa6';
 import NavigationBar from './Navigation';
 import Image from 'next/image';
+import ContactUs from './ContactUs';
+
 
 interface Link {
   name: string;
@@ -410,89 +412,10 @@ const TruckingHomepage = () => {
       </section>
 
       {/* Contact Section */}
-      <section id='contact' className="py-20 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row gap-12">
-            <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-green-900">Contact Our Offices</h2>
-              
-              <form className="space-y-6">
-                <div>
-                  <label className="block text-gray-700 mb-2">Your Name</label>
-                  <input type="text" className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" />
-                </div>
-                
-                <div>
-                  <label className="block text-gray-700 mb-2">Email Address</label>
-                  <input type="email" className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" />
-                </div>
-                
-                <div>
-                  <label className="block text-gray-700 mb-2">Message</label>
-                  <textarea rows={5} className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
-                </div>
-                
-                <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300">
-                  Send Message
-                </button>
-              </form>
-            </div>
-            
-            <div className="lg:w-1/2">
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-bold mb-6 text-green-900">Our Kenyan Offices</h3>
-                
-                <div className="space-y-4">
-                  <div className="flex items-start">
-                    <div className="text-green-600 text-xl mr-4"><FaMapMarkerAlt /></div>
-                    <div>
-                      <div className="font-bold">Nairobi Headquarters</div>
-                      <div className="text-gray-600">Mombasa Road, Nairobi, Kenya</div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <div className="text-green-600 text-xl mr-4"><FaMapMarkerAlt /></div>
-                    <div>
-                      <div className="font-bold">Mombasa Branch</div>
-                      <div className="text-gray-600">Port Reitz Road, Mombasa, Kenya</div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <div className="text-green-600 text-xl mr-4"><FaPhone /></div>
-                    <div>
-                      <div className="font-bold">Phone</div>
-                      <div className="text-gray-600">+254 112 820700</div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <div className="text-green-600 text-xl mr-4"><FaEnvelope /></div>
-                    <div>
-                      <div className="font-bold">Email</div>
-                      <div className="text-gray-600">info@kenyaprohaul.co.ke</div>
-                    </div>
-                  </div>
-                  
-                  <div className="pt-4">
-                    <div className="font-bold mb-2">Hours of Operation</div>
-                    <div className="text-gray-600">Monday - Friday: 7:00 AM - 7:00 PM</div>
-                    <div className="text-gray-600">Saturday: 8:00 AM - 4:00 PM</div>
-                    <div className="text-gray-600">Sunday: Emergency services only</div>
-                  </div>
-                  
-                  <div className="pt-4">
-                    <div className="font-bold mb-2">Emergency Contact</div>
-                    <div className="text-gray-600">After hours: +254 112 820700</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ContactUs />
 
+
+      
       {/* Footer */}
       <footer className="bg-green-900 text-white py-12">
         <div className="container mx-auto px-4">
