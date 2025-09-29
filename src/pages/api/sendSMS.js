@@ -1,6 +1,6 @@
 
 
-const africastalking = require('africastalking');
+import africastalking from 'africastalking';
 
 // Initialize Africa's Talking
 const credentials = {
@@ -18,10 +18,10 @@ export default async function handler(req, res) {
     }
 
     try {
-        const { name, email, message, phoneNumber } = req.body;
+        const { name, phoneNumber, message } = req.body;
 
         // Validate input
-        if (!name || !email || !message) {
+        if (!name || !phoneNumber || !message) {
             console.log('Validation Error: Missing fields');
             return res.status(400).json({ 
                 error: 'Name, email and message are required' 
@@ -31,7 +31,7 @@ export default async function handler(req, res) {
         // Create SMS message for your office
 
         const officePhone = process.env.OFFIICE_PHONE || '+254788427394';
-        const smsMessage = `New Contact Form Submission:\nFrom: ${name}\nEmail: ${email}\nMessage: ${message}`;
+        const smsMessage = `New Contact Form Submission:\nFrom: ${name}\nPhone: ${phoneNumber}\nMessage: ${message}`;
 
         // Send SMS to office
         const options = {

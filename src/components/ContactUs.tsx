@@ -4,7 +4,7 @@ import { FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
 const ContactUs = () => {
     const [formData, setFormData] = useState({
         name: '',
-        email: '',
+        phoneNumber: 0,
         message: ''
     });
     const [loading, setLoading] = useState(false);
@@ -17,10 +17,27 @@ const ContactUs = () => {
         });
     };
 
+    const dataValidation = (formData: { name: string; phoneNumber: number; message: string }) => {
+        const phonePattern = /^(\+2547\d{8}|07\d{8})$/;
+        if (!formData.name || !formData.phoneNumber || !formData.message) {
+            setStatus({ type: 'error', message: 'All fields are required.' });
+            return false;
+        }
+        if (!phonePattern.test(formData.phoneNumber.toString())) {
+            setStatus({ type: 'error', message: 'Please enter a valid Kenyan phone number.' });
+            return false;
+        }
+        return true;
+    }
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
         setStatus({ type: '', message: '' });
+        if (!dataValidation(formData)) {
+            setLoading(false);
+            return;
+        }
 
         try {
             const response = await fetch('/api/sendSMS', {
@@ -41,7 +58,7 @@ const ContactUs = () => {
                 // Reset form
                 setFormData({
                     name: '',
-                    email: '',
+                    phoneNumber: 0,
                     message: ''
                 });
             } else {
@@ -51,6 +68,7 @@ const ContactUs = () => {
                 });
             }
         } catch (error) {
+          console.log('Error submitting form:', error);
             setStatus({
                 type: 'error',
                 message: 'An error occurred. Please try again or call us directly.'
@@ -81,11 +99,12 @@ const ContactUs = () => {
                             </div>
                             
                             <div>
-                                <label className="block text-gray-700 mb-2">Email Address</label>
+                                <label className="block text-gray-700 mb-2">Phone Number</label>
                                 <input 
-                                    type="email"
-                                    name="email"
-                                    value={formData.email}
+                                    type="number"
+                                    name="phoneNumber"
+                                    pattern="^(\+2547\d{8}|07\d{8})$"
+                                    value={formData.phoneNumber}
                                     onChange={handleChange}
                                     required
                                     className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500" 

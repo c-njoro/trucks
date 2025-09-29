@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaTruck, FaMapMarkerAlt, FaClock, FaDollarSign, FaShieldAlt, FaUserTie, FaPhone, FaEnvelope, FaMapMarkedAlt, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaTruck, FaMapMarkerAlt, FaClock, FaDollarSign, FaShieldAlt, FaUserTie, FaMapMarkedAlt, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -415,7 +415,7 @@ const TruckingHomepage = () => {
       <ContactUs />
 
 
-      
+
       {/* Footer */}
       <footer className="bg-green-900 text-white py-12">
         <div className="container mx-auto px-4">
